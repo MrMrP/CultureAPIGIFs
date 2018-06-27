@@ -15,7 +15,16 @@ function createButtons() {
 }
 createButtons()
 
-//On click of each button a list of GIFs will be displayed in the hmtl//
+// Form & Function for adding buttons based on user input
+function addedCulture() {
+    $("#add").on("click", function(event) {
+    event.preventDefault();
+    var culture = $("#input").val();
+    $("#button-view").push(culture);
+})}
+addedCulture()
+
+//On click of each button a list of GIFs including the Rating will be displayed in the hmtl//
 $("button").on("click", function () {
     var topics = $(this).attr("topic-name");
     var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + topics + "&api_key=l0vXKgwN3ptyVENPDtTqpcFgT8jf374Z&limit=10";
@@ -30,11 +39,25 @@ $("button").on("click", function () {
 
 
             for (var i = 0; i < results.length; i++) {
-                var imageUrl = results[i].images.original.url;
+                var imageUrl = results[i].images.original_still.url;
                 var image = $("<img>");
                 image.attr("src", imageUrl);
+                image.attr("still")
                 $("#content").prepend(image);
             }
+                ///Function to make still image animate and to make animated image become still
+            $(image).on("click", function() {
+                var state = $(this).attr("data-state");
+                
+                if (state === "still") {
+                    $(this).attr("src", $(this).attr("data-animate"));
+                    $(this).attr("data-state", "animate");
+                  }
+                  else {
+                    $(this).attr("src", $(this).attr("data-animate"));
+                    $(this).attr("data-state", "still")
+                
+                  }})
 
             for (var i = 0; i < results.length; i++) {
                 var rating = results[i].rating;
@@ -44,9 +67,3 @@ $("button").on("click", function () {
 
         })
 })
-
-
-
-
-
-
