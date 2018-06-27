@@ -15,7 +15,7 @@ function createButtons() {
 }
 createButtons()
 
-// Form & Function for adding buttons based on user input
+// Form & Function for adding buttons based on user input. Unfortuantely form takes input upon submisson but function is not working properly to add user input as a button
 function addedCulture() {
     $("#add").on("click", function(event) {
     event.preventDefault();
@@ -45,7 +45,7 @@ $("button").on("click", function () {
                 image.attr("still")
                 $("#content").prepend(image);
             }
-                ///Function to make still image animate and to make animated image become still
+                ///Function to make still image animate and to make animated image become still. Unfortuantely images are still but function is not working properly to animate GIFs
             $(image).on("click", function() {
                 var state = $(this).attr("data-state");
                 
